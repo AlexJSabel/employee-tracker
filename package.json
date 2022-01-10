@@ -1,7 +1,7 @@
 {
-  "name": "sql-employee-tracker",
+  "name": "employee-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "EMPLOYEE TRACKER",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -14,15 +14,15 @@
     "url": "git+https://github.com/tniemeye19/sql-employee-tracker.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Alex Sabel",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tniemeye19/sql-employee-tracker/issues"
+    "url": "https://github.com/AlexJSabel/employee-tracker"
   },
-  "homepage": "https://github.com/tniemeye19/sql-employee-tracker#readme",
+  "homepage": "https://github.com/AlexJSabel/employee-tracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
     "inquirer": "^8.2.0",
-    "mysql2": "^2.3.2"
+    "mysql2": "^2.3.3"
   }
 }

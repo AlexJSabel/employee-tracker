@@ -12,10 +12,10 @@ let manager_id;
 
 db.connect(function(err){
     if(err) {
-        console.log('CONNECTION ERROR TO DATABASE')
+        console.log('Error connecting to db')
     }
-    console.log('DATABASE CONNECTED')
- 
+    console.log('connected to the db successfully')
+    console.log('Employee Tracker')
     mainMenu();
 })
 
@@ -28,7 +28,7 @@ function mainMenu() {
             {
                 type: 'list',
                 name: 'choice',
-                message: 'Your options',
+                message: 'What would you like to do?',
                 choices: ['View all departments', 
                     'View all roles', 
                     'View all employees', 
@@ -63,7 +63,7 @@ function mainMenu() {
                         {
                             type: 'list',
                             name: 'managerSelect',
-                            message: "What employees?",
+                            message: "Which manager's employees would you like to see?",
                             choices: employeeNameList
                         }
                     ])
@@ -72,13 +72,13 @@ function mainMenu() {
                         viewEmployeesByManager(selectedManager);
                     })
                     break;
-                case 'Employees by department':
+                case 'View employees by department':
                     inquirer
                     .prompt([
                         {
                             type: 'list',
                             name: 'departmentSelect',
-                            message: "Which employees?",
+                            message: "Which department's employees would you like to view?",
                             choices: departmentNameList
                         }
                     ])
@@ -93,12 +93,12 @@ function mainMenu() {
                         {
                             type: 'input',
                             name: 'departmentName',
-                            message: 'Name of new department',
+                            message: 'What would you like to name the new department?',
                             validate: nameInput => {
                                 if (nameInput) {
                                     return true;
                                 } else {
-                                    console.log('Please enter department name ');
+                                    console.log('Please enter the name of the department you would like to create!');
                                 }
                             }
                         }
@@ -119,26 +119,26 @@ function mainMenu() {
                                 if (nameInput) {
                                     return true;
                                 } else {
-                                    console.log('Please enter the name of the role ');
+                                    console.log('Please enter the name of the role you would like to create!');
                                 }
                             }
                         },
                         {
                             type: 'input',
                             name: 'roleSalary',
-                            message: 'Salary of role?',
+                            message: 'What would you like the salary to be for this role?',
                             validate: nameInput => {
                                 if (nameInput) {
                                     return true;
                                 } else {
-                                    console.log('Please enter the salary');
+                                    console.log('Please enter the salary you would like this role to have!');
                                 }
                             }
                         },
                         {
                             type: 'list',
                             name: 'roleDepartment',
-                            message: 'What department does this fall under?',
+                            message: 'What department would you like this role to fall under?',
                             choices: departmentNameList
                         }
                     ])
@@ -160,7 +160,7 @@ function mainMenu() {
                                 if (nameInput) {
                                     return true;
                                 } else {
-                                    console.log('Enter the first name');
+                                    console.log('Please enter the employees first name!');
                                 }
                             }
                         },
@@ -172,7 +172,7 @@ function mainMenu() {
                                 if (nameInput) {
                                     return true;
                                 } else {
-                                    console.log('Enter the last name!');
+                                    console.log('Please enter the employees last name!');
                                 }
                             }
                         },
@@ -302,9 +302,9 @@ function viewAllDepartments() {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        =======================
-        VIEWING ALL DEPARTMENTS
-        =======================`);
+
+        All Departments
+`);
         console.log('\n');
         console.table(rows);
         console.log('\n');
@@ -321,9 +321,9 @@ function viewAllRoles() {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        =================
-        VIEWING ALL ROLES
-        =================`);
+
+        All Roles
+`);
         console.log('\n');
         console.table(rows);
         console.log('\n');
@@ -343,9 +343,9 @@ function viewAllEmployees() {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        =====================
-        VIEWING ALL EMPLOYEES
-        =====================`);
+
+        All Employees
+`);
         console.log('\n');
         console.table(rows);
         console.log('\n');
@@ -363,9 +363,9 @@ function viewEmployeesByManager(selectedManager) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        ==============================================
-        VIEWING THE EMPLOYEES UNDER ${selectedManager}
-        ==============================================`);
+
+        Employees under ${selectedManager}
+`);
         console.log('\n');
         console.table(rows);
         console.log('\n');
@@ -384,9 +384,9 @@ function viewEmployeesByDepartment(departmentName) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        =====================================================
-        VIEWING EMPLOYEES IN THE ${departmentName} DEPARTMENT
-        =====================================================`);
+
+        Employees in ${departmentName} Departent
+`);
         console.log('\n');
         console.table(rows);
         console.log('\n');
@@ -401,9 +401,9 @@ function addDepartment(depName) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        ====================================
-        ADDING ${depName} TO DEPARTMENT LIST
-        ====================================`);
+
+        Adding ${depName} to Departments
+`);
         console.log('\n');
         mainMenu();
     })
@@ -418,9 +418,9 @@ function addRole(title, departmentName, salary) {
     if (err) throw err;
     console.log('\n');
     console.log(`
-    =============================
-    ADDING ${title} TO ROLES LIST
-    =============================`);
+
+    Adding ${title} to Roles
+`);
     console.log('\n');
     mainMenu();
     })
@@ -436,9 +436,9 @@ function addEmployee(first_name, last_name, roleName, manager) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        =============================
-        ADDING ${first_name} ${last_name} TO EMPLOYEE LIST
-        =============================`);
+
+        adding ${first_name} ${last_name} to Employees
+`);
         console.log('\n');
         mainMenu();
     })
@@ -454,9 +454,9 @@ function updateEmployeeRole(empName, empRole) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        ========================================
-        UPDATING ${empName}'s ROLE TO ${empRole}
-        ========================================`);
+
+        Updating ${empName}'s Role to ${empRole}
+`);
         console.log('\n');
         mainMenu();
     })
@@ -472,9 +472,9 @@ function updateEmployeeManagers(employeeName, managerName) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        ====================================================
-        UPDATING ${employeeName}'s MANAGER TO ${managerName}
-        ====================================================`);
+
+        Updating ${employeeName}'s Manager to ${managerName}
+`);
         console.log('\n');
         mainMenu();
     })
@@ -489,9 +489,9 @@ function deleteDepartment(departmentDelete) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        =======================================
-        DELETING DEPARTMENT ${departmentDelete}
-        =======================================`);
+
+        Remove Department ${departmentDelete}
+  `);
         console.log('\n');
         mainMenu();
     })
@@ -506,9 +506,8 @@ function deleteRoles(roleDelete) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        ===========================
-        DELETING ROLE ${roleDelete}
-        ===========================`);
+        Removing Role ${roleDelete}
+`);
         console.log('\n');
         mainMenu();
     })
@@ -523,9 +522,8 @@ function deleteEmployees(employeeDelete) {
         if (err) throw err;
         console.log('\n');
         console.log(`
-        ===================================
-        DELETING EMPLOYEE ${employeeDelete}
-        ===================================`);
+        Removing ${employeeDelete}
+        `);
         console.log('\n');
         mainMenu();
     })
